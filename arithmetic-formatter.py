@@ -1,6 +1,8 @@
 def arithmetic_arranger(problems, show_answers=False):
-    expressions = []
     SPACING = '    '
+    OPERATOR_OFFSET = 2
+
+    expressions = []
 
     for problem in problems:
         if len(expressions) == 5:
@@ -17,6 +19,8 @@ def arithmetic_arranger(problems, show_answers=False):
         elif not expressions[-1]['top'].isnumeric() or not expressions[-1]['bottom'].isnumeric():
             return 'Error: Numbers must only contain digits.'
 
+    LAST_INDEX = len(expressions) - 1
+
     lines = ['', '', '']
     if show_answers == True:
         lines.append('')
@@ -25,21 +29,21 @@ def arithmetic_arranger(problems, show_answers=False):
         if max(len(expr['top']), len(expr['bottom'])) > 4:
             return 'Error: Numbers cannot be more than four digits.'
 
-        expr['width'] = max(len(expr['top']), len(expr['bottom'])) + 2
+        expr['width'] = max(len(expr['top']), len(expr['bottom'])) + OPERATOR_OFFSET
         
         lines[0] += f'{expr["top"]:>{expr["width"]}}' \
-        + (SPACING if index < len(expressions) - 1 else '')
+        + (SPACING if index < LAST_INDEX else '')
 
         lines[1] += f'{expr["op"]}{expr["bottom"]:>{expr["width"]-1}}' \
-        + (SPACING if index < len(expressions) - 1 else '')
+        + (SPACING if index < LAST_INDEX else '')
         
         lines[2] += '-' * expr["width"] \
-        + (SPACING if index < len(expressions) - 1 else '')
+        + (SPACING if index < LAST_INDEX else '')
 
         if show_answers == True:
             result = calculate_result(expr)
             lines[3] += f'{str(result):>{expr["width"]}}' \
-            + (SPACING if index < len(expressions) - 1 else '')
+            + (SPACING if index < LAST_INDEX else '')
 
     return "\n".join(lines).strip('\n')
 
