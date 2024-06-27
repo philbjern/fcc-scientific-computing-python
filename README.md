@@ -7,6 +7,7 @@ def arithmetic_arranger(problems, show_answers=False):
     SPACING = ' ' * 4
     OPERATOR_OFFSET = 2
 
+    # Expressions validation and parsing
     expressions = []
 
     for problem in problems:
@@ -30,6 +31,7 @@ def arithmetic_arranger(problems, show_answers=False):
     if show_answers == True:
         lines.append('')
 
+    # Create output lines
     for index, expr in enumerate(expressions):
         if max(len(expr['top']), len(expr['bottom'])) > 4:
             return 'Error: Numbers cannot be more than four digits.'
