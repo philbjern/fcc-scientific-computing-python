@@ -1,17 +1,21 @@
 def arithmetic_arranger(problems, show_answers=False):
     SPACING = '    '
     OPERATOR_OFFSET = 2
+    OPERATOR_INPUT_OFFSET = 3
+    MAX_INPUT_DIGITS = 4
+    MAX_PROBLEMS_AMOUNT = 5
 
+    # Expressions validation and parsing
     expressions = []
 
     for problem in problems:
-        if len(expressions) == 5:
+        if len(expressions) == MAX_PROBLEMS_AMOUNT:
             return 'Error: Too many problems.'
         first_space_index = problem.find(" ")
         expressions.append({
             'top': problem[:first_space_index],
-            'bottom': problem[first_space_index+3:].strip(),
-            'op': problem[first_space_index:first_space_index+3].strip()
+            'bottom': problem[first_space_index+OPERATOR_INPUT_OFFSET:].strip(),
+            'op': problem[first_space_index:first_space_index+OPERATOR_INPUT_OFFSET].strip()
         })
 
         if expressions[-1]['op'] not in ('+', '-'):
@@ -25,8 +29,9 @@ def arithmetic_arranger(problems, show_answers=False):
     if show_answers == True:
         lines.append('')
 
+    # Create output lines
     for index, expr in enumerate(expressions):
-        if max(len(expr['top']), len(expr['bottom'])) > 4:
+        if max(len(expr['top']), len(expr['bottom'])) > MAX_INPUT_DIGITS:
             return 'Error: Numbers cannot be more than four digits.'
 
         expr['width'] = max(len(expr['top']), len(expr['bottom'])) + OPERATOR_OFFSET
@@ -60,7 +65,7 @@ def calculate_result(expression):
     else:
         return None
 
-
+# Tests
 print(f'\n{arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])}')
 print(f'\n{arithmetic_arranger(["3801 - 2", "123 + 49"])}')
 print(f'\n{arithmetic_arranger(["44 + 815", "909 - 2", "45 + 43", "123 + 49", "888 + 40", "653 + 87"])}')
