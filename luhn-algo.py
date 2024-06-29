@@ -17,6 +17,7 @@ def verify_card_number(card_number):
 
     return total % 10 == 0
 
+
 def main():
     card_number = '4111-1111-4555-1141'
     card_translation = str.maketrans({'-': '', ' ': ''})
@@ -26,5 +27,6 @@ def main():
         print('VALID!')
     else:
         print('INVALID!')
+
 
 main()
