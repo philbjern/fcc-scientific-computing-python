@@ -1,6 +1,6 @@
 MINUTES_IN_DAY = 24 * 60
 
-DAYS_OF_WEEK = ['monday', 'tuesday', 'wednesday',
+WEEK_DAYS_NAMES = ['monday', 'tuesday', 'wednesday',
     'thursday', 'friday', 'saturday', 'sunday']
 
 def add_time(start, duration, day_of_week=''):
@@ -34,8 +34,8 @@ def add_time(start, duration, day_of_week=''):
     new_time = f'{new_hours}:{new_minutes} {am_pm}'
 
     if day_of_week != '':
-        day_index = DAYS_OF_WEEK.index(day_of_week.lower())
-        new_day_name = DAYS_OF_WEEK[(day_index + days_offset) % len(DAYS_OF_WEEK)]
+        day_index = WEEK_DAYS_NAMES.index(day_of_week.lower())
+        new_day_name = WEEK_DAYS_NAMES[(day_index + days_offset) % len(WEEK_DAYS_NAMES)]
         new_time += f', {new_day_name[0].upper() + new_day_name[1:]}'
 
     if days_offset == 1:
