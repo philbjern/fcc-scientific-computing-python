@@ -13,15 +13,16 @@ class Category:
         
         category_str = ''
         category_str += '*' * stars_amount
-        category_str += str(self.category) + '*' * stars_amount
+        category_str += str(self.category) 
+        category_str += '*' * stars_amount
         
         while len(category_str) < width:
             category_str += '*'
         category_str += '\n'
 
         for item in self.ledger:
-            category_str += f'{item["description"][:DESC_MAX_LEN]:{DESC_MAX_LEN}} \
-                    {self.format_amount(item["amount"])[:AMOUNT_MAX_LEN]:>{AMOUNT_MAX_LEN}}\n'
+            category_str += f'{item["description"][:DESC_MAX_LEN]:{DESC_MAX_LEN}}' + \
+                    f'{self.format_amount(item["amount"])[:AMOUNT_MAX_LEN]:>{AMOUNT_MAX_LEN}}\n'
 
         category_str += f'Total: {self.format_amount(self.get_balance())}'
 
