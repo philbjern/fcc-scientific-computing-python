@@ -20,7 +20,8 @@ class Category:
         category_str += '\n'
 
         for item in self.ledger:
-            category_str += f'{item["description"][:DESC_MAX_LEN]:{DESC_MAX_LEN}}{self.format_amount(item["amount"])[:AMOUNT_MAX_LEN]:>{AMOUNT_MAX_LEN}}\n'
+            category_str += f'{item["description"][:DESC_MAX_LEN]:{DESC_MAX_LEN}} \
+                    {self.format_amount(item["amount"])[:AMOUNT_MAX_LEN]:>{AMOUNT_MAX_LEN}}\n'
 
         category_str += f'Total: {self.format_amount(self.get_balance())}'
 
