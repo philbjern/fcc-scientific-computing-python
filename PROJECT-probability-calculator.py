@@ -19,7 +19,7 @@ class Hat:
         return 'hat=[' + ', '.join(self.orig_contents) + ']'
 
     def draw(self, number):
-        # not enought balls ever
+        # not enough balls ever
         if number > len(self.orig_contents):
             draw = self.orig_contents
             self.contents = []
